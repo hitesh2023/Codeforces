@@ -1,0 +1,94 @@
+#include <bits/stdc++.h>
+#include<stdlib.h>
+#define pb push_back
+#define pp pair
+#define mp make_pair
+#define MOD 1000000007
+#define ll long long
+#define pie 3.141592653589793
+#define sc(a) scanf("%c",&a)
+#define si(a) scanf("%d",&a)
+#define ss(a) scanf("%s",a)
+#define sl(a) scanf("%lld",&a)
+#define all(c) c.begin(), c.end()
+#define pi(a) printf("%d",a)
+#define pc(a) printf("%c",a)
+#define pl(a) printf("%lld",a)
+#define ps(a) printf("%s",a)
+#define F first
+#define S second
+#define INF 0x3f3f3f3f
+#define FOR(i,j,k,in) for(ll i=j ; i<k ; i=i+in)
+#define RFOR(i,j,k,dc) for(ll i=j ; i>=k; i=i-dc)
+using namespace std;
+string str[4];
+bool foo(int x ,int y) {
+   if(x < 4 && y < 4)
+   return str[x][y]==str[x][y+1] && str[x][y]==str[x+1][y+1] && str[x][y]==str[x+1][y];
+else
+    return false;
+}
+
+bool foo() {
+  for(int i=0 ; i<3 ; i++) {
+    for(int j=0 ; j<3 ; j++) {
+        if(foo(i,j))
+            return true;
+    }
+  }
+  return false;
+}
+
+int main()
+{
+    std:ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+	for(int i=0 ; i<4 ; i++)
+    {
+        cin >> str[i];
+    }
+    if(foo()) {
+        cout << "YES\n";
+    }
+   else {
+        bool flag =false;
+       for(int i=0 ; i<3 ; i++) {
+        for(int j=0 ; j<3 ; j++) {
+            if(str[i][j] == '#')
+            {
+                str[i][j]='.';
+                if(foo(i,j))
+                   {
+
+
+                    flag = true;
+                    break;
+                   }
+                else
+                    str[i][j]='#';
+            }
+            else
+            {
+
+                str[i][j]='#';
+                if(foo(i,j))
+             {
+
+
+                    flag = true;
+                    break;
+            }
+            else
+                    str[i][j]='.';
+            }
+        }
+        if(flag)
+             break;
+       }
+       if(flag) cout << "YES\n";
+       else  cout << "NO\n";
+   }
+
+   return 0;
+}
