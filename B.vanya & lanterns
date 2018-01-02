@@ -1,0 +1,59 @@
+
+#include <bits/stdc++.h>
+#include<stdlib.h>
+#define pb push_back
+#define pp pair
+#define mp make_pair
+#define MOD 1000000007
+#define ll long long
+#define pie 3.141592653589793
+#define sc(a) scanf("%c",&a)
+#define si(a) scanf("%d",&a)
+#define ss(a) scanf("%s",a)
+#define sl(a) scanf("%lld",&a)
+#define all(c) c.begin(), c.end()
+#define pi(a) printf("%d",a)
+#define pc(a) printf("%c",a)
+#define pl(a) printf("%lld",a)
+#define ps(a) printf("%s",a)
+#define F first
+#define S second
+#define INF 0x3f3f3f3f
+#define FOR(i,j,k,in) for(ll i=j ; i<k ; i=i+in)
+#define RFOR(i,j,k,dc) for(ll i=j ; i>=k; i=i-dc)
+
+using namespace std;
+int main()
+{
+    std:ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+
+    ll n,l,val;
+    bool f1=false,f2=false;
+    sl(n) , sl(l);
+    vector <ll> arr;
+    FOR(i,0,n,1)
+    {
+        sl(val);
+        arr.push_back(val);
+        if(val ==0)
+            f1=true;
+        if(val == l)
+            f2=true;
+    }
+    sort(begin(arr),end(arr));
+    ll maxi=INT_MIN;
+    FOR(i,1,n,1)
+    {
+        maxi=max(maxi,arr[i]-arr[i-1]);
+    }
+
+    double ans =(double)maxi/(2.0);
+    if(!f1) ans= max(ans,(double)arr[0]);
+    if(!f2) ans =max(ans,(double)(l-arr[n-1]));
+    cout << ans << endl;
+   return 0;
+}
+//7 15
+//15 5 3 7 9 14 0
